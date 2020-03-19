@@ -156,6 +156,7 @@ public class ExperimentController extends AppCompatActivity {
         Log.d("Info_Act : ", info_act.getText().toString());
         Log.d("Info_Case : ", info_case.getText().toString());
         Log.d("Info_Count : ", info_cnt.getText().toString());
+        
         /*익명클래스 예시
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -343,7 +344,7 @@ public class ExperimentController extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... params) {
             HttpURLConnection conn = null;
-            String url = "http://203.255.81.72:9000/sensor";
+            String url = "http://[Your IP Address]";
 
             try {
                 URL obj = new URL(url);
@@ -459,10 +460,6 @@ public class ExperimentController extends AppCompatActivity {
                     + " || ACCELOMETER[Z] : " + String.format("%.4f", event.values[2]));
 
             SensorData.setAccValueList(Double.toString(accX), Double.toString(accY), Double.toString(accZ));
-//                Log.e("Accel_NullPoint ---- ", "ACCELOMETER[X] : " + String.format("%.4f", event.values[0])
-//                        + " || ACCELOMETER[Y] : " + String.format("%.4f", event.values[1])
-//                        + " || ACCELOMETER[Z] : " + String.format("%.4f", event.values[2]));
-//            }
         }
 
         @Override
@@ -475,7 +472,6 @@ public class ExperimentController extends AppCompatActivity {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            try {
                 String gyroX = Double.toString(event.values[0]);
                 String gyroY = Double.toString(event.values[1]);
                 String gyroZ = Double.toString(event.values[2]);
@@ -490,11 +486,6 @@ public class ExperimentController extends AppCompatActivity {
 
                 SensorData.setGyroValueList(gyroX, gyroY, gyroZ);
 
-            } catch (NullPointerException e) {
-                Log.e("Gyro_NullPoint ---- ", "GYROSCOPE [X] : " + String.format("%.4f", event.values[0])
-                        + " || GYROSCOPE [Y] : " + String.format("%.4f", event.values[1])
-                        + " || GYROSCOPE [Z] : " + String.format("%.4f", event.values[2]));
-
             }
         }
 
@@ -508,7 +499,6 @@ public class ExperimentController extends AppCompatActivity {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            try {
                 String oriX = Double.toString(event.values[0]);
                 String oriY = Double.toString(event.values[1]);
                 String oriZ = Double.toString(event.values[2]);
@@ -522,12 +512,6 @@ public class ExperimentController extends AppCompatActivity {
                 Log.d("LOG", "ORIENTATION [X]" + String.format("%.4f", event.values[0])
                         + " || ORIENTATION [Y]:" + String.format("%.4f", event.values[1])
                         + " || ORIENTATION [Z]:" + String.format("%.4f", event.values[2]));
-            } catch (NullPointerException e) {
-                Log.e("Ori_NullPoint ---- ", "ORIENTATION [X]" + String.format("%.4f", event.values[0])
-                        + " || ORIENTATION [Y]:" + String.format("%.4f", event.values[1])
-                        + " || ORIENTATION [Z]:" + String.format("%.4f", event.values[2]));
-            }
-
         }
 
         @Override
@@ -540,10 +524,6 @@ public class ExperimentController extends AppCompatActivity {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-//            String magX = Double.toString(event.values[0]);
-//            String magY = Double.toString(event.values[1]);
-//            String magZ = Double.toString(event.values[2]);
-            try {
                 String magX = Double.toString(event.values[0]);
                 String magY = Double.toString(event.values[1]);
                 String magZ = Double.toString(event.values[2]);
@@ -557,13 +537,7 @@ public class ExperimentController extends AppCompatActivity {
                         + " || MAGNETIC [Z]:" + String.format("%.4f", event.values[2]));
 
                 SensorData.setMagneticValueList(magX, magY, magZ);
-
-            } catch (NullPointerException e) {
-                Log.e("Mag_NullPoint ---- ", "MAGNETIC [X]" + String.format("%.4f", event.values[0])
-                        + " || MAGNETIC [Y]:" + String.format("%.4f", event.values[1])
-                        + " || MAGNETIC [Z]:" + String.format("%.4f", event.values[2]));
             }
-
         }
 
         @Override
@@ -571,47 +545,6 @@ public class ExperimentController extends AppCompatActivity {
 
         }
     }
-
-//    private void countEstimation() {
-//        TimerTask timerTask = new TimerTask() {
-//            @Override
-//            public void run() {
-//                networkTask = new NetworkTask();
-//
-//                if (isSystemRun == BTN_STOP) {
-//                    timer.cancel();
-//                    networkTask.cancel(true);
-//                    esti_count = 0;
-//                }
-//
-//                if (esti_count == 1001) {
-//                    onPause();
-//                    timer.cancel();
-//                    networkTask.cancel(true);
-//                    esti_count = 0;
-//                } else {
-//                    networkTask.execute();
-//                    esti_count++;
-//                }
-//            }
-//        };
-//
-//        timer.scheduleAtFixedRate(timerTask, 3000, 100);
-//    }
-
-//                    jsonData.setAcc_x(sensorList.get(i).getAccValue_X());
-//                    jsonData.setAcc_y(sensorList.get(i).getAccValue_Y());
-//                    jsonData.setAcc_z(sensorList.get(i).getAccValue_Z());
-//                    jsonData.setGyro_x(sensorList.get(i).getGyroValue_X());
-//                    jsonData.setGyro_y(sensorList.get(i).getGyroValue_Y());
-//                    jsonData.setGyro_z(sensorList.get(i).getGyroValue_Z());
-//                    jsonData.setOri_x(sensorList.get(i).getOriValue_X());
-//                    jsonData.setOri_y(sensorList.get(i).getOriValue_Y());
-//                    jsonData.setOri_z(sensorList.get(i).getOriValue_Z());
-//                    jsonData.setMag_x(sensorList.get(i).getMagneticValue_X());
-//                    jsonData.setMag_y(sensorList.get(i).getMagneticValue_Y());
-//                    jsonData.setMag_z(sensorList.get(i).getMagneticValue_Z());
-
 }
 
 
