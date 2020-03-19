@@ -244,7 +244,7 @@ public class WiFiScanner extends AppCompatActivity {
         @Override
         protected Integer doInBackground(Void... voids) {
             HttpURLConnection conn = null;
-            String url = "http://203.255.81.72:9000/wifi";
+            String url = "http://[Your IP Address]";
 
             try {
                 URL obj = new URL(url);
@@ -315,36 +315,5 @@ public class WiFiScanner extends AppCompatActivity {
             super.onCancelled();
         }
     }
-
-
-//    void scanWiFiList(Context context) {
-//        BroadcastReceiver wifiScanReceiver = new BroadcastReceiver() {
-//            @Override
-//            public void onReceive(Context context, Intent intent) {
-//                final String action = intent.getAction();
-//                if(action.equals(WifiManager.SCAN_ScanResult_AVAILABLE_ACTION)){
-//                    scanData = wifiManager.getScanScanResult();
-//                    Toast.makeText(getApplicationContext(), scanData.get(0).SSID, Toast.LENGTH_SHORT).show();
-//                } else if(action.equals(WifiManager.NETWORK_STATE_CHANGED_ACTION)){
-//                    sendBroadcast(new Intent("wifi.ON_NETWORK_STATE_CHANGED"));
-//                }
-//                boolean success = intent.getBooleanExtra(WifiManager.EXTRA_ScanResult_UPDATED, false);
-//                if (success) {
-//                    scanSuccess();
-//                } else {
-//                    scanFailure();
-//                }
-//            }
-//        };
-//    }
-
-//    private void scanSuccess(){
-//        List<ScanResult> ScanResult = wifiManager.getScanScanResult();
-//    }
-//
-//    private void scanFailure(){
-//
-//    }
-
 
 }
